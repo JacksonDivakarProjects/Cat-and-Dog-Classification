@@ -4,6 +4,7 @@ import numpy as np
 from tensorflow.keras.layers import Conv2D,Input,MaxPool2D,GlobalMaxPool2D,Dense
 from tensorflow.keras.models import Model
 from PIL import Image
+import requests
 CONFIG={
     "BATCH_SIZE":16,
     "IMG_SIZE":(300,300),
@@ -39,7 +40,7 @@ try:
     else:
         st.error(f"Failed to retrieve pickle file. Status code: {response.status_code}")
 except Exception as e:
-    st.error(f"Error reading pickle file: {e}")
+    st.error(f"Error reading model file: {e}")
 
 
 
