@@ -35,7 +35,7 @@ try:
 
     if response.status_code == 200:
         # Load the data from the pickle file
-        model_temp = pk.loads(response.content)
+        model_temp = response.content
     else:
         st.error(f"Failed to retrieve pickle file. Status code: {response.status_code}")
 except Exception as e:
