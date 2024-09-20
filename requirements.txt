@@ -1,10 +1,21 @@
+# Streamlit version compatible with other packages
+streamlit==0.89.0
+
+# TensorFlow version with compatible numpy
 tensorflow==2.16.1
-streamlit==1.25.0
-protobuf==3.20.3
-click==7.1.2
-altair==4.2.2
-entrypoints==0.4
-toolz==0.12.1
+
+# Specify the required version of numpy
 numpy==1.26.0
-pillow==10.0.0
-requests==2.26.0
+
+# Compatible click version
+click==7.1.2
+
+# Protobuf version compatible with Streamlit
+protobuf==3.20.3
+
+# Altair for data visualization
+altair==4.2.2
+
+# Other dependencies
+pandas==2.2.3
+Pillow  # Use the latest version if not specified
