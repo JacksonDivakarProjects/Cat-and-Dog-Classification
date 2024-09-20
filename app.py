@@ -45,7 +45,7 @@ def load_pretrained_model(url):
         response = requests.get(url)
         if response.status_code == 200:
             model_path = tf.keras.utils.get_file("model.h5", url)
-            st.write(f"Model downloaded to: {model_path}")  # Debugging print
+            
             return tf.keras.models.load_model(model_path)
         else:
             st.error(f"Failed to retrieve model file. Status code: {response.status_code}")
