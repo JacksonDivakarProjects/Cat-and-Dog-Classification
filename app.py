@@ -5,7 +5,7 @@ from tensorflow.keras.layers import Conv2D, Input, MaxPool2D, GlobalMaxPool2D, D
 from tensorflow.keras.models import Model
 from PIL import Image
 import requests
-model_url=''
+model_url='https://github.com/JacksonDivakarProjects/Cat-and-Dog-Classification/raw/refs/heads/main/Final%20Model.h5'
 # Configuration settings
 CONFIG = {
     "IMG_SIZE": (300, 300),
