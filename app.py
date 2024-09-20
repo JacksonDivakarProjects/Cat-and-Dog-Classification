@@ -5,7 +5,7 @@ from tensorflow.keras.layers import Conv2D, Input, MaxPool2D, GlobalMaxPool2D, D
 from tensorflow.keras.models import Model
 from PIL import Image
 import requests
-
+model_url=''
 # Configuration settings
 CONFIG = {
     "IMG_SIZE": (300, 300),
@@ -40,22 +40,23 @@ def get_model(input_shape=(300, 300, 3), no_of_labels=1):
     return Model(i, x)
 
 # Load the pre-trained model
-model_temp = None
-github_raw_url = "https://github.com/JacksonDivakarProjects/Cat-and-Dog-Classification/raw/refs/heads/main/Final%20Model.h5"
-
-try:
-    response = requests.get(github_raw_url)
-    if response.status_code == 200:
-        model_temp = tf.keras.models.load_model(tf.keras.utils.get_file("model.h5", github_raw_url))
-    else:
-        st.error(f"Failed to retrieve model file. Status code: {response.status_code}")
-except Exception as e:
-    st.error(f"Error reading model file: {e}")
-
-# Instantiate the model
+def load_pretrained_model(url):
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            model_path = tf.keras.utils.get_file("model.h5", url)
+            st.write(f"Model downloaded to: {model_path}")  # Debugging print
+            return tf.keras.models.load_model(model_path)
+        else:
+            st.error(f"Failed to retrieve model file. Status code: {response.status_code}")
+    except Exception as e:
+        st.error(f"Error loading model: {e}")
+    return None
+pretrained_model = load_pretrained_model(model_url)
 model = get_model()
-if model_temp is not None:
-    model.load_weights("model.h5")
+if pretrained_model:
+    model.load_weights(tf.keras.utils.get_file("model.h5", model_url))  # Ensure correct path
+
 
 # Title of the Streamlit app
 st.title('Dog Vs Cat Classification')
